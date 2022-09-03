@@ -1,6 +1,6 @@
 # opengl_3dgraphing_attempt
-This is my unsuccessful attempt at creating a 3d graphing engine.  Stuck on triangulation as of now.  
-Somehow implement delaunay triangulation in 3d or a projection onto 2d at some point.
+This is my unsuccessful attempt at creating a 3d graphing engine.  Stuck on triangulation as of now.  Somehow implement delaunay 
+triangulation in 3d or a projection onto 2d at some point.
 
 I have just started with opengl.  So as of now the entire codebase is primarily just initializing the stuff that opengl needs.
 As of now, I have done all things that are needed to fire up opengl and drawn out 3 lines (that are supposed to be the axes of 
