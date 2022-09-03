@@ -99,6 +99,15 @@ GLSL
     * a fragment shader requires a vec4 output variable
 
   - when the types and names are equal opengl will connect ins to outs
+  
+Projections
+
+I am too lazy to write this out.  But essentially, the way you get things into 3d is by
+utilizing the concept that further things seem smaller.  It's still on 2d but just seem 3d.
+The way you do it is to use some linear algebra to transform all of the 3d vertices into 
+on-screen coordinates through a series of matrices.  I don't know the math enough, so I just 
+plagiarized the code from the glm library.  With this concept in mind, you can do a huge number
+of interesting transformations that I don't understand yet.  So, case and point, INSTALL GLM.
 
 todo:
 * glfw key table
