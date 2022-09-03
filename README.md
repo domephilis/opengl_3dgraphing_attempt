@@ -1,6 +1,6 @@
 # opengl_3dgraphing_attempt
 
-!!!   THE MAIN CODE IS IN ./src/main.cpp.  THE REST IS THE INCLUDES AND THE BUILD SCRIPTS    !!!
+** !!!   THE MAIN CODE IS IN ./src/main.cpp.  THE REST IS THE INCLUDES AND THE BUILD SCRIPTS    !!!  **
 
 This is my unsuccessful attempt at creating a 3d graphing engine.  Stuck on triangulation as of now.  Somehow implement delaunay 
 triangulation in 3d or a projection onto 2d at some point.
