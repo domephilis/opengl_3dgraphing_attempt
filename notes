@@ -1,0 +1,105 @@
+* opengl is just a set specifications of what the driver must achieve, the
+  implementations differ by manufacturer
+
+* due to opengl's abstraction away from the operating system, glfw and other
+  libraries provide us with the necessary operating system specific instructions
+
+* since implementation of opengl's specifications differ by manufacturer, each
+  driver's implementation is different.  glad know the implementation of my
+  computer and store the necessary functions into pointers and create an
+  interface for us to program in 
+
+* there are 2 opengl profiles: core and immediate, use core for expanded
+  verstatility with the code and also the tutorial is in core
+
+* to process input pass the window as a parameter to a function in the render
+  loop and define what action correspond to what key in there
+
+structure needed for creating a program
+
+1. initialize glfw with the glfw_context_version and the profile you are using
+2. initialize glad with gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)
+3. create window object with the width height of the window and the name of the
+   window
+4. Set the viewport and framebuffersizecallback(for dynamically adjusting
+window) up
+5. Define the vertices you wish to draw by creating an array in a format which
+   you specify later
+6.
+initiate a render loop
+  all render functions and animations shall be listed here
+	such as:
+	  glClearColor(,,,);
+glClear(
+	  GL_COLOR_BUFFER_BIT or
+	  GL_DEPTH_BUFFER_BIT or
+	  GL_STENCIL_BUFFER_BIT
+	)
+  if over terminate
+terminate
+
+Graphics Pipeline (highly isolated processes that are designed to be done in
+parallel):
+
+* vertex shader: main purpose is to transform 3d coordinates(vertices) into clipped,
+  projected, perspective, ... coordinates that might be more realistic to the
+  human eye
+
+* primitive assembly: based on the primitive you have given it (GL_POINTS,
+  GL_TRIANGLES, GL_LINE_STRIP), it'll assemble vertices into shapes
+
+* geometry shader: rasterizes primitives into little pixels and change the
+  primitives such that it fits the pixel designations
+
+* fragment shader: colors the stuff that geometry shaders output and turns them
+  into fragments (does lights shadows color of the light and so on)
+
+* tests and blending: checks depth and puts things into perspective, does
+  opacity and blending (antialiasing ...)
+
+Vertex Inputs:
+  Note: in NDC 0 is the origin, 1 is the entirety of your screen in the axis
+  your doing.  opengl uses and only renders stuff that is in your NDC
+  1.  use vbo to send vertices computed on the cpu to the vertex shader on the
+	gpu in bulk
+	  remember to gen->bind->copy	
+  2.  use the vertex attributes pointer to store vertex attributes.  in the vertex shader there should
+	  be a line that says layout (location = 0), this specifies the location of
+	  the vap 0
+	  you'll need
+	  *	location of the vao
+	  * size of the vertex 3 for vec3 4 for vec4
+	  * data is float? vec* in GLSL is float so say float
+	  * normalize? GL_FALSE
+	  *	stride (size of vector in bytes) n * sizeof(float)
+	  * offset of data (void*)0 voidcasting suppresses compiler warnings !!!
+  3. use the vertex attribute object to bind vertex attributes such that you can
+     bind it into whatever state you want
+  4. use EBO to use one vertex twice by defining an array of indices where one
+  number or vector can be used twice
+
+  NOTE !!! : ORDER IS IMPORTANT VAO BIND -> VBO -> EBO -> WRITE
+  GLVERTEXATTRIBPOINTER -> UNBIND BUFFER
+
+GLSL
+
+-- types
+  - int float double uint and bool
+  - vecn(floats) bvecn ivecn uvecn dvecn (containers of the basic types before) n is the
+    size of the component container like vec4 vec3
+    * components of a vector can be accessed like vec.x .y .z .w
+    * one can swizzle like this vec4 = vec2.xy + vec2.yx
+    * vec4 stuff = vec4(prev_stuff.xyz,1.0);
+
+-- ins and outs
+  - in type name; defines the input variable for a shader
+  - out type name; define the output variable for a shader
+    * a fragment shader requires a vec4 output variable
+
+  - when the types and names are equal opengl will connect ins to outs
+
+todo:
+* glfw key table
+* glfw mouse action function or constant
+
+
